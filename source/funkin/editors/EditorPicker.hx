@@ -73,7 +73,11 @@ class EditorPicker extends MusicBeatSubstate {
 		}
 		sprites[0].selected = true;
 
-		FlxG.mouse.getScreenPosition(subCam, oldMousePos);
+		#if desktop FlxG.mouse.getScreenPosition(subCam, oldMousePos); #end
+		#if mobile
+		addVPad(UP_DOWN, A_B);
+		addVPadCamera();
+		#end
 	}
 
 	public override function update(elapsed:Float) {
@@ -88,14 +92,16 @@ class EditorPicker extends MusicBeatSubstate {
 		}
 		changeSelection(-FlxG.mouse.wheel + (controls.UP_P ? -1 : 0) + (controls.DOWN_P ? 1 : 0));
 
+        #if desktop
 		FlxG.mouse.getScreenPosition(subCam, curMousePos);
 		if (curMousePos.x != oldMousePos.x || curMousePos.y != oldMousePos.y) {
 			oldMousePos.set(curMousePos.x, curMousePos.y);
 			curSelected = -1;
 			changeSelection(Std.int(curMousePos.y / optionHeight)+1);
 		}
+		#end
 
-		if (controls.ACCEPT || FlxG.mouse.justReleased) {
+		if (controls.ACCEPT #if desktop || FlxG.mouse.justReleased #end) {
 			if (options[curSelected].state != null) {
 				selected = true;
 				CoolUtil.playMenuSFX(CONFIRM);
@@ -116,10 +122,15 @@ class EditorPicker extends MusicBeatSubstate {
 			} else {
 				CoolUtil.openURL("https://www.youtube.com/watch?v=9Youam7GYdQ");
 			}
-
 		}
-		if (controls.BACK)
+
+		if (controls.BACK) {
+            #if mobile
+			FlxG.resetState();
+			#else
 			close();
+			#end
+		}
 	}
 
 	override function destroy() {

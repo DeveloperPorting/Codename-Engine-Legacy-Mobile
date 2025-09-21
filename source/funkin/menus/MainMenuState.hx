@@ -83,7 +83,7 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 		#if mobile
-		addVPad(UP_DOWN, A_B_C);
+		addVPad(UP_DOWN, A_B_X_Y);
 		addVPadCamera();
 		vPad.visible = true;
 		#end
@@ -100,7 +100,10 @@ class MainMenuState extends MusicBeatState
 		if (!selectedSomethin)
 		{
 			if (canAccessDebugMenus) {
-				if (FlxG.keys.justPressed.SEVEN) {
+				if (FlxG.keys.justPressed.SEVEN #if mobile || vPad.buttonY.justPressed #end) {
+					#if mobile
+					removeVPad();
+					#end
 					persistentUpdate = false;
 					persistentDraw = true;
 					openSubState(new funkin.editors.EditorPicker());
@@ -125,7 +128,7 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new TitleState());
 
 			#if MOD_SUPPORT
-			if (controls.SWITCHMOD #if mobile || vPad.buttonC.justPressed #end) {
+			if (controls.SWITCHMOD #if mobile || vPad.buttonX.justPressed #end) {
 				openSubState(new ModSwitchMenu());
 				#if mobile
 				removeVPad();

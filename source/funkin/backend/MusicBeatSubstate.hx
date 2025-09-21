@@ -168,15 +168,19 @@ class MusicBeatSubstate extends FlxSubState implements IBeatReceiver
 			call("postUpdate", [elapsed]);
 		}
 
-		if (_requestSubStateReset)
-		{
+		// if (subState == null && (MusicBeatState.ALLOW_DEBUG_RELOAD && controls.DEBUG_RELOAD)) {
+		// 	Logs.trace("Reloading Current SubState...", INFO, YELLOW);
+		// 	var test = Type.createInstance(Type.getClass(this), [this.scriptsAllowed, this.scriptName]);
+		// 	parent.openSubState(test);
+		// }
+
+		if (_requestSubStateReset) {
 			_requestSubStateReset = false;
 			resetSubState();
 		}
+
 		if (subState != null)
-		{
 			subState.tryUpdate(elapsed);
-		}
 	}
 
 	override function close() {
@@ -213,10 +217,6 @@ class MusicBeatSubstate extends FlxSubState implements IBeatReceiver
 
 	override function update(elapsed:Float)
 	{
-		// TODO: DEBUG MODE!!
-		if (FlxG.keys.justPressed.F5) {
-			loadScript();
-		}
 		call("update", [elapsed]);
 		super.update(elapsed);
 	}
