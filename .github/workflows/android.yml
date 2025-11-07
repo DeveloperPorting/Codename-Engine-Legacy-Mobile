@@ -30,8 +30,6 @@ jobs:
         run: |
           haxe -cp commandline -D analyzer-optimize --run Main setup -s
           haxelib run lime rebuild hxcpp
-          haxe --clean
-          haxelib run lime rebuild clean
 
       - name: Configure Android
         run: |
@@ -42,7 +40,7 @@ jobs:
           haxelib run lime config ANDROID_SETUP true
       - name: Building the game
         run: |
-          haxelib run lime build android -final -clean
+          haxelib run lime build android -final
       - name: Clear Previous Cache
         uses: actions/github-script@main
         with:
