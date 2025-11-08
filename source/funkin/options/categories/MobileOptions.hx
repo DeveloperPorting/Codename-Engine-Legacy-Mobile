@@ -5,7 +5,7 @@ class MobileOptions extends OptionsScreen {
 	var extrabutton:NumOption;
 	
 	public override function new() {
-		super("Mobile Options", "Change Mobile Options...");
+		super("Mobile Options", "Change Mobile Controls options...");
 		add(new Checkbox(
 			"Hitbox Visibility",
 			"Turning this off makes the hitbox invisible.\n Be careful with this.",
