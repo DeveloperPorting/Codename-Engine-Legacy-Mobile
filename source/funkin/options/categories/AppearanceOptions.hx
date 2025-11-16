@@ -1,5 +1,7 @@
 package funkin.options.categories;
 
+import flixel.util.FlxTimer;
+
 class AppearanceOptions extends OptionsScreen {
 	public override function new() {
 		super("Appearance", "Change Appearance options such as Flashing menus...");
