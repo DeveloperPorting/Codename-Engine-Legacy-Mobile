@@ -1,5 +1,7 @@
 package funkin.options.categories;
 
+import flixel.util.FlxTimer;
+
 
 class MiscOptions extends OptionsScreen {
 	public override function new() {
