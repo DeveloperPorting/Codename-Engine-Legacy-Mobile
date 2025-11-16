@@ -1,5 +1,7 @@
 package funkin.options.categories;
 
+import flixel.util.FlxTimer;
+
 class MobileOptions extends OptionsScreen {
 
 	var extrabutton:NumOption;
