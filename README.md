@@ -1,4 +1,4 @@
-# Friday Night Funkin' - Codename Engine (WIP)
+# Friday Night Funkin' - Codename Engine Mobile (Legacy)
 
 ## PLEASE NOTE - THIS IS STILL IN A BETA STATE
 ### Mods created with beta versions of Codename may not be compatible with the release version
@@ -89,6 +89,13 @@ In the future (when the engine won't be a WIP anymore) we're gonna also publish 
 
 <details>
   <summary><h2>Mobile Credits</h2></summary>
+
+- [Cream.BR](https://youtube.com/@creambroficial) - Mobile Legacy Porter
+- [TheLagKing](https://youtube.com/@thelagkingp999) - Mobile Legacy Porter
+</details>
+
+<details>
+  <summary><h2>(Legacy) Mobile Credits</h2></summary>
 
 - [MaysLastPlay](https://youtube.com/@MaysLastPlay) - MobileUtil Creator and Mobile Porter
 - [Idklool](https://youtube.com/@Idklool122) - TouchInput Creator and Mobile Porter
