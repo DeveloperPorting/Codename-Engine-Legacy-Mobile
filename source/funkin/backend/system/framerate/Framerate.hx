@@ -21,7 +21,7 @@ class Framerate extends Sprite {
 	public static var codenameBuildField:CodenameBuildField;
 	#end
 
-	public static var fontName:String = #if windows '${Sys.getEnv("windir")}\\Fonts\\consola.ttf' #else "_sans" #end;
+	public static var fontName:String = #if windows '${Sys.getEnv("windir")}\\Fonts\\consola.ttf' #else "_typewriter" #end;
 
 	/**
 	 * 0: FPS INVISIBLE
@@ -100,10 +100,15 @@ class Framerate extends Sprite {
 	var debugAlpha:Float = 0;
 	public override function __enterFrame(t:Int) {
         #if android
-		if (TouchInput.BACK()) {
-	    debugMode = (debugMode + 1) % 3;
-		}
-		#end
+          if (TouchInput.BACK()) debugMode = (debugMode + 1) % 3;
+        #elseif ios
+          for(camera in FlxG.cameras.list) {
+             var pos = FlxG.mouse.getScreenPosition(camera);
+            if (pos.x >= 10 + offset.x && pos.x <= offset.x + 80 && pos.y >= 2 + offset.y && pos.y <= 2 + offset.y + 60) {
+               if (FlxG.mouse.justPressed) debugMode = ((debugMode + 1) % 3);
+            }
+          }
+        #end
 
 		alpha = CoolUtil.fpsLerp(alpha, debugMode > 0 ? 1 : 0, 0.5);
 		debugAlpha = CoolUtil.fpsLerp(debugAlpha, debugMode > 1 ? 1 : 0, 0.5);
